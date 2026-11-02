@@ -1,0 +1,75 @@
+/* ───────────────────────────────────────────────
+   Brain Freeze — Global Styles
+   ─────────────────────────────────────────────── */
+
+/* Design tokens */
+:root {
+  --color-bg: #0f0f14;
+  --color-surface: #1a1a24;
+  --color-border: #2a2a3a;
+  --color-text: #f0eff8;
+  --color-text-muted: #8888aa;
+  --color-accent: #7c6bff;
+  --color-accent-light: #a89dff;
+  --color-success: #22c55e;
+  --color-error: #f87171;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+a {
+  color: var(--color-accent-light);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Utility: visually hidden */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

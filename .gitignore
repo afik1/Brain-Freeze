@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+instructor-notes.md
+WORKSHOP_PLAN.md
+WORKSHOP_REVIEW.md
+*.local
+.DS_Store
