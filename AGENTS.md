@@ -62,6 +62,15 @@ Participants are expected to build the full ordering experience during the works
 The API is already running and provides everything the frontend needs.
 See `docs/API.md` for the full reference.
 
+## Reusable agent workflows
+
+Reusable workflows are available under `.agents/workflows/`:
+
+- `inspect-repo`
+- `review-before-finish`
+
+They are not run automatically — use them when asked.
+
 ## Development conventions
 
 - **Prefer existing project patterns** before inventing new ones. Inspect the codebase first.
