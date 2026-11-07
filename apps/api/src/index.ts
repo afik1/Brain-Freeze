@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { router } from "./routes.js";
 import { errorHandler } from "./errors.js";
+export { resetData } from "./data.js";
 
 const PORT = Number(process.env["PORT"] ?? 3001);
 const DELAY_MIN = Number(process.env["DELAY_MIN_MS"] ?? 150);

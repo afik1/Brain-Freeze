@@ -1,4 +1,4 @@
-import type { Flavor, StoreInfo } from "./types.js";
+import type { Flavor, Size, StoreInfo, Topping } from "./types.js";
 
 export const storeInfo: StoreInfo = {
   name: "Brain Freeze",
@@ -41,6 +41,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "soy"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 40,
     isFeatured: true,
   },
   {
@@ -54,6 +55,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "eggs"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 35,
     isFeatured: true,
   },
   {
@@ -67,6 +69,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 30,
     isFeatured: false,
   },
   {
@@ -80,6 +83,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 28,
     isFeatured: false,
   },
   {
@@ -93,6 +97,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "gluten", "eggs"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 3,
     isFeatured: false,
   },
 
@@ -108,6 +113,7 @@ export const flavors: Flavor[] = [
     allergens: [],
     isVegan: true,
     isAvailable: true,
+    stockRemaining: 25,
     isFeatured: true,
   },
   {
@@ -121,6 +127,7 @@ export const flavors: Flavor[] = [
     allergens: [],
     isVegan: true,
     isAvailable: true,
+    stockRemaining: 30,
     isFeatured: false,
   },
   {
@@ -134,6 +141,7 @@ export const flavors: Flavor[] = [
     allergens: [],
     isVegan: true,
     isAvailable: true,
+    stockRemaining: 18,
     isFeatured: false,
   },
   {
@@ -146,6 +154,7 @@ export const flavors: Flavor[] = [
     allergens: [],
     isVegan: true,
     isAvailable: true,
+    stockRemaining: 22,
     isFeatured: false,
   },
   {
@@ -159,6 +168,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk"],
     isVegan: false,
     isAvailable: false, // out of season
+    stockRemaining: 0,
     isFeatured: false,
   },
 
@@ -174,6 +184,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "nuts"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 4,
     isFeatured: true,
   },
   {
@@ -187,6 +198,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "gluten", "nuts"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 15,
     isFeatured: false,
   },
   {
@@ -200,6 +212,7 @@ export const flavors: Flavor[] = [
     allergens: ["milk", "nuts"],
     isVegan: false,
     isAvailable: false, // batch not ready yet
+    stockRemaining: 0,
     isFeatured: false,
   },
   {
@@ -213,25 +226,119 @@ export const flavors: Flavor[] = [
     allergens: [],
     isVegan: true,
     isAvailable: true,
+    stockRemaining: 12,
     isFeatured: false,
   },
   {
     id: "the-mystery",
     name: "???",
-    description: null as unknown as string, // intentionally long edge-case description below
+    description:
+      "We genuinely cannot tell you what this is. The chef knows. She's not saying. It changes every day. Past versions have included brown butter, candied fennel, crushed digestives, something described only as 'the orange thing', and on one memorable Thursday, activated charcoal. We don't recommend it for people who need to know things before eating them. Everyone else seems to enjoy it. Current batch has no identifiable flavor notes. The chef smiled when asked. That could mean anything.",
     price: 3.0,
     imageUrl: null, // no image — workshop edge case
     category: "special",
     allergens: ["milk", "gluten", "eggs", "nuts", "soy"],
     isVegan: false,
     isAvailable: true,
+    stockRemaining: 2,
     isFeatured: false,
   },
 ];
 
-// Patch the mystery flavor with a long description after array init
-// so TypeScript is happy with the type
-(flavors.find((f) => f.id === "the-mystery") as Flavor).description =
-  "We genuinely cannot tell you what this is. The chef knows. She's not saying. It changes every day. Past versions have included brown butter, candied fennel, crushed digestives, something described only as 'the orange thing', and on one memorable Thursday, activated charcoal. We don't recommend it for people who need to know things before eating them. Everyone else seems to enjoy it. Current batch has no identifiable flavor notes. The chef smiled when asked. That could mean anything.";
-
 export const categories = ["classic", "fruit", "special"] as const;
+
+export const sizes: Size[] = [
+  { id: "small", name: "Small", priceModifier: -0.5 },
+  { id: "regular", name: "Regular", priceModifier: 0 },
+  { id: "large", name: "Large", priceModifier: 1.5 },
+];
+
+export const DEFAULT_SIZE_ID = "regular";
+
+export const toppings: Topping[] = [
+  {
+    id: "chocolate-sauce",
+    name: "Chocolate Sauce",
+    price: 0.5,
+    allergens: ["milk", "soy"],
+    isVegan: false,
+    isAvailable: true,
+  },
+  {
+    id: "cookie-crumble",
+    name: "Cookie Crumble",
+    price: 0.75,
+    allergens: ["gluten", "milk"],
+    isVegan: false,
+    isAvailable: true,
+  },
+  {
+    id: "roasted-nuts",
+    name: "Roasted Nuts",
+    price: 0.75,
+    allergens: ["nuts"],
+    isVegan: true,
+    isAvailable: true,
+  },
+  {
+    id: "rainbow-sprinkles",
+    name: "Rainbow Sprinkles",
+    price: 0.5,
+    allergens: [],
+    isVegan: true,
+    isAvailable: true,
+  },
+  {
+    id: "fresh-berries",
+    name: "Fresh Berries",
+    price: 1.0,
+    allergens: [],
+    isVegan: true,
+    isAvailable: true,
+  },
+  {
+    id: "whipped-cream",
+    name: "Whipped Cream",
+    price: 0.5,
+    allergens: ["milk"],
+    isVegan: false,
+    isAvailable: true,
+  },
+  {
+    id: "honeycomb-crunch",
+    name: "Honeycomb Crunch",
+    price: 1.0,
+    allergens: [],
+    isVegan: false,
+    isAvailable: false, // supplier delay
+  },
+];
+
+const initialFlavorSnapshots = flavors.map((f) => ({
+  id: f.id,
+  stockRemaining: f.stockRemaining,
+  isAvailable: f.isAvailable,
+}));
+
+const initialToppingSnapshots = toppings.map((t) => ({
+  id: t.id,
+  isAvailable: t.isAvailable,
+}));
+
+export function resetData(): void {
+  orderCounter = 1041;
+  for (const flavor of flavors) {
+    const snap = initialFlavorSnapshots.find((s) => s.id === flavor.id);
+    if (snap) {
+      flavor.stockRemaining = snap.stockRemaining;
+      flavor.isAvailable = snap.isAvailable;
+    }
+  }
+  for (const topping of toppings) {
+    const snap = initialToppingSnapshots.find((s) => s.id === topping.id);
+    if (snap) {
+      topping.isAvailable = snap.isAvailable;
+    }
+  }
+}
+

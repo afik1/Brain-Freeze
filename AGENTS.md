@@ -37,7 +37,7 @@ npm run dev --workspace=apps/web   # frontend only
 ```bash
 npm run verify       # typecheck + test + build (run before finishing)
 npm run typecheck    # TypeScript checks for all workspaces
-npm run test         # API test suite
+npm run test         # API + frontend test suites
 npm run build        # production build for all workspaces
 ```
 
@@ -67,6 +67,7 @@ See `docs/API.md` for the full reference.
 Reusable workflows are available under `.agents/workflows/`:
 
 - `inspect-repo`
+- `add-tests-for-changed-behavior`
 - `review-before-finish`
 
 They are not run automatically — use them when asked.
